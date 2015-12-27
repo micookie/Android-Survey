@@ -1,4 +1,4 @@
-﻿package com.example.uitils;
+﻿package com.example.survey.uitils;
 
 import android.content.Context;
 import android.widget.Toast;

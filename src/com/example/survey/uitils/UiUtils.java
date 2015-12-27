@@ -4,7 +4,7 @@
  * @author miCookie
  * @date 2015-12-2
  */
-package com.example.uitils;
+package com.example.survey.uitils;
 
 import android.content.Context;
 

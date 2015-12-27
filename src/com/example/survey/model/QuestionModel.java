@@ -1,4 +1,6 @@
 package com.example.survey.model;
+
+import java.util.ArrayList;
 /**
  * <p>Title: FeedbackModel.java</p>
  * <p>Description: </p>
@@ -7,12 +9,6 @@ package com.example.survey.model;
  */
 
 
-import java.util.ArrayList;
-
-/**
- * @author 10192537
- * 
- */
 public class QuestionModel {
 
 	private int questionNo;

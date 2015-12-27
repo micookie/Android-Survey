@@ -21,9 +21,10 @@ import android.widget.TextView;
 
 import com.alibaba.fastjson.JSONArray;
 import com.example.survey.model.QuestionModel;
+import com.example.survey.uitils.ToastUtils;
+import com.example.survey.uitils.UiUtils;
 import com.example.survey.weight.FlowRadioGroup;
-import com.example.uitils.ToastUtils;
-import com.example.uitils.UiUtils;
+
 import com.lidroid.xutils.HttpUtils;
 import com.lidroid.xutils.exception.HttpException;
 import com.lidroid.xutils.http.ResponseInfo;
@@ -55,8 +56,8 @@ public class SurveyActivity extends Activity implements OnClickListener {
 		// final String jsonChinese =
 		// "[{\"questionName\":\"您对本次展厅的参观很满意吗？\",\"questionNo\":1,\"questionOption\":[\"非常同意\",\"同意\",\"不确定\",\"不同意\",\"完全不同意\"]},{\"questionName\":\"这次展厅的参观满足了您在技术层面的需求吗？\",\"questionNo\":2,\"questionOption\":[\"非常同意\",\"同意\",\"不确定\",\"不同意\",\"完全不同意\"]},{\"questionName\":\"中兴展厅的布局和风格很吸引您吗？\",\"questionNo\":3,\"questionOption\":[\"非常同意\",\"同意\",\"不确定\",\"不同意\",\"完全不同意\"]},{\"questionName\":\"您觉得我们展厅的哪部分还需要改进？\",\"questionNo\":4,\"questionOption\":[\"形象区部分（PPT）\",\"无线产品（Pre5G,基站）\",\"终端\",\"智慧城市\",\"IPTV/家庭应用\",\"有线产品(C300, T8000)\"]},{\"questionName\":\"您会购买中兴的产品吗？\",\"questionNo\":5,\"questionOption\":[\"会\",\"可能会\",\"不会\"]},{\"questionName\":\"本次宣讲在技术层面上生动形象、易于理解吗？\",\"questionNo\":6,\"questionOption\":[\"非常同意\",\"同意\",\"不确定\",\"不同意\",\"完全不同意\"]},{\"questionName\":\"您对本次宣讲人员很满意吗？\",\"questionNo\":7,\"questionOption\":[\"非常同意\",\"同意\",\"不确定\",\"不同意\",\"完全不同意\"]},{\"questionName\":\"您对我们展厅的哪部分展示最满意？\",\"questionNo\":8,\"questionOption\":[\"形象区部分（PPT）\",\"无线产品（Pre5G,基站）\",\"终端\",\"智慧城市\",\"IPTV/家庭应用\",\"有线产品(C300, T8000)\"]},{\"questionName\":\"宣讲人员态度友善、彬彬有礼吗？\",\"questionNo\":9,\"questionOption\":[\"非常同意\",\"同意\",\"不确定\",\"不同意\",\"完全不同意\"]},{\"questionName\":\"我的问题得到了满意的回答吗？\",\"questionNo\":10,\"questionOption\":[\"非常同意\",\"同意\",\"不确定\",\"不同意\",\"完全不同意\"]}]";
 		final String json = "[{\"questionName\":\"您对我们的产品满意吗？\",\"questionNo\":1,\"questionType\":0,\"questionOption\":[]},{\"questionName\":\"我们的布局和风格很吸引您吗？\",\"questionNo\":2,\"questionType\":0,\"questionOption\":[]},{\"questionName\":\"您觉得我们的哪部分还需要改进？\",\"questionNo\":3,\"questionType\":1,\"questionOption\":[\"A部分xxxxx\",\"B部分oooo\",\"C部分www\",\"D部分mmm\",\"E部分\",\"F部分\",]},{\"questionName\":\"您会购买我们的产品吗？\",\"questionNo\":4,\"questionType\":1,\"questionOption\":[\"会\",\"可能会\",\"不会\"]},{\"questionName\":\"您对我们的服务人员很满意吗？\",\"questionNo\":5,\"questionType\":0,\"questionOption\":[]},{\"questionName\":\"我的问题得到了满意的回答吗？\",\"questionNo\":6,\"questionType\":0,\"questionOption\":[]}]";
-		
-		//json请求URL
+
+		// json请求URL
 		String url = "";
 
 		HttpUtils http = new HttpUtils();
@@ -64,7 +65,7 @@ public class SurveyActivity extends Activity implements OnClickListener {
 		http.send(HttpMethod.GET, url, new RequestCallBack<String>() {
 			@Override
 			public void onFailure(HttpException arg0, String arg1) {
-				ToastUtils.show(SurveyActivity.this, "网络错误");
+				ToastUtils.showLong(SurveyActivity.this, "网络加载失败，使用本地数据加载...");
 
 				// 测试代码，当网络请求失败的时候，使用变量中的json
 				// 2.解析JSON
@@ -174,8 +175,8 @@ public class SurveyActivity extends Activity implements OnClickListener {
 		for (int i = 0; i < questionList.size(); i++) {
 
 			// ####生成item框架####
-			LinearLayout itemFeedbackLayout = new LinearLayout(this);
-			itemFeedbackLayout.setBackgroundColor(Color.parseColor("#FFFFFF"));
+			LinearLayout itemSurveyLayout = new LinearLayout(this);
+			itemSurveyLayout.setBackgroundColor(Color.parseColor("#FFFFFF"));
 			// 设置item宽度、高度
 			// LinearLayout.LayoutParams paramsItem = new
 			// LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
@@ -183,10 +184,10 @@ public class SurveyActivity extends Activity implements OnClickListener {
 			LinearLayout.LayoutParams paramsItem = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
 			// 设置item margin
 			paramsItem.setMargins(0, UiUtils.dip2px(this, 10), 0, 0);
-			itemFeedbackLayout.setPadding(UiUtils.dip2px(this, 5), 0, UiUtils.dip2px(this, 5), 0);
-			itemFeedbackLayout.setLayoutParams(paramsItem);
-			itemFeedbackLayout.setBackgroundColor(Color.parseColor("#00000000"));
-			itemFeedbackLayout.setOrientation(LinearLayout.VERTICAL);
+			itemSurveyLayout.setPadding(UiUtils.dip2px(this, 5), 0, UiUtils.dip2px(this, 5), 0);
+			itemSurveyLayout.setLayoutParams(paramsItem);
+			itemSurveyLayout.setBackgroundColor(Color.parseColor("#00000000"));
+			itemSurveyLayout.setOrientation(LinearLayout.VERTICAL);
 
 			// ####生成问题TextView####
 			TextView question = new TextView(this);
@@ -196,7 +197,7 @@ public class SurveyActivity extends Activity implements OnClickListener {
 			question.setTextSize(UiUtils.sp2px(this, 5.2f));
 			question.setText((questionList.get(i).getQuestionNo()) + "." + questionList.get(i).getQuestionName());
 			// 渲染问题到item框架
-			itemFeedbackLayout.addView(question);
+			itemSurveyLayout.addView(question);
 
 			// 问题类型0，没有具体选择答案，星级评价
 			if (questionList.get(i).getQuestionType() == 0) {
@@ -214,13 +215,12 @@ public class SurveyActivity extends Activity implements OnClickListener {
 				ratingBar.setOnRatingBarChangeListener(new OnRatingBarChangeListener() {
 					@Override
 					public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
-						// ToastUtils.show(SurveyActivity.this, "星星：" +
-						// ratingBar.getId() + "分数" + rating);
+						ToastUtils.show(SurveyActivity.this, "星星：" + ratingBar.getId() + "分数" + rating);
 						result.put(ratingBar.getId(), String.valueOf(rating));
 					}
 				});
 
-				itemFeedbackLayout.addView(ratingBar);
+				itemSurveyLayout.addView(ratingBar);
 				// 问题类型1，有具体选择项，使用Radio处理
 			} else if (questionList.get(i).getQuestionType() == 1) {
 				// ###################################################################
@@ -242,20 +242,18 @@ public class SurveyActivity extends Activity implements OnClickListener {
 					radio.setOnClickListener(new OnClickListener() {
 						@Override
 						public void onClick(View v) {
-							// ToastUtils.show(SurveyActivity.this, "按钮组"
-							// +String.valueOf(group.getQuestionNo()) + "&按钮：" +
-							// radio.getText().toString());
+							ToastUtils.show(SurveyActivity.this, "Group" + String.valueOf(group.getId()) + "&Radio：" + radio.getText().toString());
 							result.put(group.getId(), radio.getText().toString());
 						}
 					});
 					group.addView(radio);
 				}
 				// 渲染RadioGroup到item框架
-				itemFeedbackLayout.addView(group);
+				itemSurveyLayout.addView(group);
 			}
 
 			// 附加到item
-			llSurveyMain.addView(itemFeedbackLayout);
+			llSurveyMain.addView(itemSurveyLayout);
 		}
 
 		// ####添加提交按钮
