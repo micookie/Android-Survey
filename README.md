@@ -2,6 +2,5 @@
 
 #### 效果如图：
 
-![Android调查问卷图1](http://img.blog.csdn.net/20151227201052767)
-
-![Android调查问卷图2](http://img.blog.csdn.net/20151227201253595)
+![Android调查问卷图1](https://ooo.0o0.ooo/2016/02/29/56d400b166fc1.png)
+![Android调查问卷图2](https://ooo.0o0.ooo/2016/02/29/56d400b17c56f.png)
